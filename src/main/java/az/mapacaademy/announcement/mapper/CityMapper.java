@@ -2,10 +2,11 @@ package az.mapacaademy.announcement.mapper;
 
 import az.mapacaademy.announcement.dto.CityDto;
 import az.mapacaademy.announcement.entity.City;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class CityMapper {
     public CityDto toDto (City city){
         CityDto cityDto = new CityDto();

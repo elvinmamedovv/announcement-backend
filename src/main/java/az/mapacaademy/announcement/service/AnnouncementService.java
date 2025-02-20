@@ -5,15 +5,19 @@ import az.mapacaademy.announcement.dto.AnnouncementDto;
 import az.mapacaademy.announcement.dto.CategoryDto;
 import az.mapacaademy.announcement.entity.Announcement;
 import az.mapacaademy.announcement.mapper.AnnouncementMapper;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
+@RequiredArgsConstructor
 public class AnnouncementService {
 
 
-    private final AnnouncementDao announcementDao = new AnnouncementDao();
-    private final AnnouncementMapper announcementMapper = new AnnouncementMapper();
+    private final AnnouncementDao announcementDao;
+    private final AnnouncementMapper announcementMapper;
 
 
 

@@ -2,11 +2,12 @@ package az.mapacaademy.announcement.dao;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.entity.City;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class CityDao {
     public List<City> findAll(){
 

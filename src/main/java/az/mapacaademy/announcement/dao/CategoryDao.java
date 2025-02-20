@@ -2,6 +2,7 @@ package az.mapacaademy.announcement.dao;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.entity.Category;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,6 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+
+@Repository
 
 public class CategoryDao {
     public List<Category> findAll(){

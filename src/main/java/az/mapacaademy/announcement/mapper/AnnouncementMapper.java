@@ -2,13 +2,17 @@ package az.mapacaademy.announcement.mapper;
 
 import az.mapacaademy.announcement.dto.AnnouncementDto;
 import az.mapacaademy.announcement.entity.Announcement;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
+@RequiredArgsConstructor
 public class AnnouncementMapper {
-    private final CityMapper cityMapper = new CityMapper();
-    private final CategoryMapper categoryMapper = new CategoryMapper();
+    private final CityMapper cityMapper ;
+    private final CategoryMapper categoryMapper ;
     public AnnouncementDto toDto (Announcement announcement){
         AnnouncementDto announcementDto = new AnnouncementDto();
         announcementDto.setAnnuncementId(announcement.getAnnouncementId());

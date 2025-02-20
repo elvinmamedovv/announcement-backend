@@ -4,12 +4,14 @@ import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.entity.Announcement;
 import az.mapacaademy.announcement.entity.Category;
 import az.mapacaademy.announcement.entity.City;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class AnnouncementDao {
 
     public List<Announcement> findAll(){
