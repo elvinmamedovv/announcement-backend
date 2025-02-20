@@ -1,6 +1,7 @@
 package az.mapacaademy.announcement.dao;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
+import az.mapacaademy.announcement.constant.QueryConstants;
 import az.mapacaademy.announcement.entity.Category;
 import org.springframework.stereotype.Repository;
 
@@ -18,10 +19,8 @@ public class CategoryDao {
     public List<Category> findAll(){
         List<Category> categories = new ArrayList<>();
         try(Connection connection = DatabaseConfig.getConnection()){
-
-            String sql = " SELECT * FROM categories;";
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(QueryConstants.GET_CATEGORY_QUERY);
             while(resultSet.next()){
                 Long id = resultSet.getLong("category_id");
                 String name = resultSet.getString("name");

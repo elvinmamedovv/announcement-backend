@@ -1,6 +1,7 @@
 package az.mapacaademy.announcement.dao;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
+import az.mapacaademy.announcement.constant.QueryConstants;
 import az.mapacaademy.announcement.entity.City;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +16,7 @@ public class CityDao {
         try (Connection connection = DatabaseConfig.getConnection()){
 
              Statement statmennt = connection.createStatement();
-             String query= "SELECT * FROM cities ";
-             ResultSet resultSet =statmennt.executeQuery(query);
+             ResultSet resultSet =statmennt.executeQuery(QueryConstants.GET_CITY_QUERY);
              while (resultSet.next()){
                  Long id = resultSet.getLong("city_id");
                  String name = resultSet.getString("name");
