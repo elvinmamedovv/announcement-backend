@@ -4,7 +4,6 @@ import az.mapacaademy.announcement.dao.CategoryDao;
 import az.mapacaademy.announcement.dto.CategoryDto;
 import az.mapacaademy.announcement.entity.Category;
 import az.mapacaademy.announcement.mapper.CategoryMapper;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

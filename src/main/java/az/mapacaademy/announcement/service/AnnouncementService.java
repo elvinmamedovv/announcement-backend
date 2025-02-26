@@ -2,14 +2,11 @@ package az.mapacaademy.announcement.service;
 
 import az.mapacaademy.announcement.dao.AnnouncementDao;
 import az.mapacaademy.announcement.dto.AnnouncementDto;
-import az.mapacaademy.announcement.dto.CategoryDto;
 import az.mapacaademy.announcement.entity.Announcement;
 import az.mapacaademy.announcement.mapper.AnnouncementMapper;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @Service
 @RequiredArgsConstructor

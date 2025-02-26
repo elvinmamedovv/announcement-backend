@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 
 @Data
 public class AnnouncementDto {
-    private Long annuncementId;
-    private String name;
-    private String description;
+
+    private String announcementName;
+    private String announcementDescription;
     private Long announcementNumber;
     private Double price;
     private String phoneNumber;
@@ -20,7 +20,6 @@ public class AnnouncementDto {
     private LocalDateTime modifiedDate;
     private CityDto city;
     private CategoryDto category;
-
 
 
 

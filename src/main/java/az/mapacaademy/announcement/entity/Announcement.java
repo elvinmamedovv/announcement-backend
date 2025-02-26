@@ -13,7 +13,7 @@ public class Announcement {
     private Long announcementNumber;
     private Double price;
     private String phoneNumber;
-    private String sellerName;
+    private String sellerFullName;
     private Boolean delivery;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;

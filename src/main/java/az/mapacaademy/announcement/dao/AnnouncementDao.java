@@ -29,7 +29,7 @@ public class AnnouncementDao {
                 announcement.setAnnouncementNumber(resultSet.getLong("announcement_number"));
                 announcement.setPrice(resultSet.getDouble("price"));
                 announcement.setPhoneNumber(resultSet.getString("phone_number"));
-                announcement.setSellerName(resultSet.getString("seller_full_name"));
+                announcement.setSellerFullName(resultSet.getString("seller_full_name"));
                 announcement.setDelivery(resultSet.getBoolean("delivery"));
                 Timestamp createdDate = resultSet.getTimestamp("created_date");
                 LocalDateTime createdDateTime= createdDate.toLocalDateTime();

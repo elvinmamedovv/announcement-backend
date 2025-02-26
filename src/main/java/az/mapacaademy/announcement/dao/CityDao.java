@@ -15,8 +15,8 @@ public class CityDao {
         List<City> cities = new ArrayList<>();
         try (Connection connection = DatabaseConfig.getConnection()){
 
-             Statement statmennt = connection.createStatement();
-             ResultSet resultSet =statmennt.executeQuery(QueryConstants.GET_CITY_QUERY);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet =statement.executeQuery(QueryConstants.GET_CITY_QUERY);
              while (resultSet.next()){
                  Long id = resultSet.getLong("city_id");
                  String name = resultSet.getString("name");
