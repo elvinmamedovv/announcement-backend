@@ -1,8 +1,9 @@
 package az.mapacaademy.announcement.controller;
 
 
-import az.mapacaademy.announcement.dto.AnnouncementRequest;
+import az.mapacaademy.announcement.dto.CreateAnnouncementRequest;
 import az.mapacaademy.announcement.dto.AnnouncementResponse;
+import az.mapacaademy.announcement.dto.UpdateAnnouncementRequest;
 import az.mapacaademy.announcement.service.AnnouncementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,15 @@ public class AnnouncementController {
 
 
      @PostMapping
-     public void createAnnouncement(@RequestBody AnnouncementRequest request){
+     public void createAnnouncement(@RequestBody CreateAnnouncementRequest request){
         announcementService.createAnnouncement(request);
+     }
+
+
+     @PutMapping("/{announcementId}")
+    public void updateAnnouncement(@PathVariable("announcementId") Long announcementId,
+                                   @RequestBody UpdateAnnouncementRequest request){
+        announcementService.updateAnnouncement(announcementId,request);
      }
 
 

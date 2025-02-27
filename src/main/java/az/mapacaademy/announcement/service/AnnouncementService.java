@@ -1,8 +1,9 @@
 package az.mapacaademy.announcement.service;
 
 import az.mapacaademy.announcement.dao.AnnouncementDao;
-import az.mapacaademy.announcement.dto.AnnouncementRequest;
+import az.mapacaademy.announcement.dto.CreateAnnouncementRequest;
 import az.mapacaademy.announcement.dto.AnnouncementResponse;
+import az.mapacaademy.announcement.dto.UpdateAnnouncementRequest;
 import az.mapacaademy.announcement.entity.Announcement;
 import az.mapacaademy.announcement.mapper.AnnouncementMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,13 @@ public class AnnouncementService {
         return announcementMapper.toResponseList(announcements);
 
     }
-    public void createAnnouncement(AnnouncementRequest request){
+    public void createAnnouncement(CreateAnnouncementRequest request){
         Announcement announcement = announcementMapper.toEntity(request);
         announcementDao.create(announcement);
+    }
+
+    public void updateAnnouncement(Long announcementId, UpdateAnnouncementRequest request){
+        Announcement announcement = announcementMapper.toEntity(announcementId,request);
+        announcementDao.update(announcement);
     }
 }

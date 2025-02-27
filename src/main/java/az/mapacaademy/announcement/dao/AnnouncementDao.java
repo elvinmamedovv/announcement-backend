@@ -76,5 +76,20 @@ public class AnnouncementDao {
             e.printStackTrace(System.err);
         }
     }
+    public void update(Announcement announcement){
+        try(Connection connection= DatabaseConfig.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstants.UPDATE_ANNOUNCEMENT_QUERY);
+            preparedStatement.setString(1, announcement.getAnnouncementName());
+            preparedStatement.setString(2, announcement.getAnnouncementDescription());
+            preparedStatement.setDouble(3, announcement.getPrice());
+            preparedStatement.setString(4, announcement.getSellerFullName());
+            preparedStatement.setBoolean(5, announcement.getDelivery());
+            preparedStatement.setLong(6, announcement.getAnnouncementId());
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+    }
 
 }
