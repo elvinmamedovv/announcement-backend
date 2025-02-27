@@ -1,14 +1,12 @@
 package az.mapacaademy.announcement.dto;
 
-import az.mapacaademy.announcement.entity.Category;
-import az.mapacaademy.announcement.entity.City;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class AnnouncementDto {
-
+public class AnnouncementResponse {
+    private Long announcementId;
     private String announcementName;
     private String announcementDescription;
     private Long announcementNumber;

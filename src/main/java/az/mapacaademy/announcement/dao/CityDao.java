@@ -32,9 +32,5 @@ public class CityDao {
 
     }
 
-    public static void main(String[] args) {
-        CityDao cityDao = new CityDao();
-        List<City> cities = cityDao.findAll();
-        System.out.println(cities);
-    }
+
 }
