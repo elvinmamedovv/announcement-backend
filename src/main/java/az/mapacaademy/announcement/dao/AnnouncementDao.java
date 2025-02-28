@@ -91,5 +91,59 @@ public class AnnouncementDao {
             e.printStackTrace(System.err);
         }
     }
+    public void delete(Long announcementId){
+        try(Connection connection= DatabaseConfig.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstants.DELETE_ANNOUNCEMENT_QUERY);
+            preparedStatement.setLong(1, announcementId);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public Announcement getById(Long announcementId){
+        try(Connection connection = DatabaseConfig.getConnection()) {
+
+           PreparedStatement preparedStatement= connection.prepareStatement(QueryConstants.GET_ANNOUNCEMENT_BY_ID);
+            preparedStatement.setLong(1, announcementId);
+           ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                Announcement announcement = new Announcement();
+                announcement.setAnnouncementId(resultSet.getLong("announcement_id"));
+                announcement.setAnnouncementName(resultSet.getString("name"));
+                announcement.setAnnouncementDescription(resultSet.getString("description"));
+                announcement.setAnnouncementNumber(resultSet.getLong("announcement_number"));
+                announcement.setPrice(resultSet.getDouble("price"));
+                announcement.setPhoneNumber(resultSet.getString("phone_number"));
+                announcement.setSellerFullName(resultSet.getString("seller_full_name"));
+                announcement.setDelivery(resultSet.getBoolean("delivery"));
+                Timestamp createdDate = resultSet.getTimestamp("created_date");
+                LocalDateTime createdDateTime= createdDate.toLocalDateTime();
+                announcement.setCreatedDate(createdDateTime);
+
+                Timestamp modifiedDate = resultSet.getTimestamp("modified_date");
+                LocalDateTime modifiedDateTime = modifiedDate.toLocalDateTime();
+                announcement.setModifiedDate(modifiedDateTime);
+
+                Long cityId = resultSet.getLong("city_id");
+                String cityName = resultSet.getString("city_name");
+                City city = new City(cityId, cityName);
+                announcement.setCity(city);
+
+                Long categoryId = resultSet.getLong("category_id");
+                String categoryName = resultSet.getString("category_name");
+                Category category = new Category(categoryId, categoryName);
+                announcement.setCategory(category);
+                return announcement;
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+        return null;
+
+    }
+
 
 }

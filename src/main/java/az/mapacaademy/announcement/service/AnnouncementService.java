@@ -34,4 +34,13 @@ public class AnnouncementService {
         Announcement announcement = announcementMapper.toEntity(announcementId,request);
         announcementDao.update(announcement);
     }
+    public  void deleteAnnouncement(Long announcementId){
+        announcementDao.delete(announcementId);
+    }
+
+    public AnnouncementResponse getById(Long announcementId){
+        Announcement announcement = announcementDao.getById(announcementId);
+        return announcementMapper.toResponse(announcement);
+
+    }
 }
