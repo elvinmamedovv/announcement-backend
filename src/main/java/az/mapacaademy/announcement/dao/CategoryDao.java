@@ -3,6 +3,7 @@ package az.mapacaademy.announcement.dao;
 import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.constant.QueryConstants;
 import az.mapacaademy.announcement.entity.Category;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -12,14 +13,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Slf4j
 @Repository
 
 public class CategoryDao {
     public List<Category> findAll(){
+        log.info("Getting categories from DB ");
         List<Category> categories = new ArrayList<>();
         try(Connection connection = DatabaseConfig.getConnection()){
             Statement statement = connection.createStatement();
+            log.info("Getting category query from DB: {}", QueryConstants.GET_CATEGORY_QUERY);
             ResultSet resultSet = statement.executeQuery(QueryConstants.GET_CATEGORY_QUERY);
             while(resultSet.next()){
                 Long id = resultSet.getLong("category_id");
@@ -30,7 +33,7 @@ public class CategoryDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace(System.out);
+            log.error(e.getMessage(), e);
         }
         return categories;
 
