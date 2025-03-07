@@ -12,6 +12,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Repository
@@ -56,7 +57,7 @@ public class AnnouncementDao {
 
             }
         } catch (SQLException e) {
-            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
 
 
@@ -78,7 +79,7 @@ public class AnnouncementDao {
             preparedStatement.setLong(9, announcement.getCategory().getCategoryId());
             preparedStatement.execute();
         } catch (SQLException e) {
-            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -95,7 +96,7 @@ public class AnnouncementDao {
             preparedStatement.execute();
 
         } catch (SQLException e) {
-            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -106,11 +107,11 @@ public class AnnouncementDao {
             preparedStatement.setLong(1, announcementId);
             preparedStatement.execute();
         } catch (SQLException e) {
-            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
     }
 
-    public Announcement getById(Long announcementId) {
+    public Optional<Announcement> findById(Long announcementId) {
         try (Connection connection = DatabaseConfig.getConnection()) {
             log.info("Get announcement by id query: {}", QueryConstants.GET_ANNOUNCEMENT_BY_ID);
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstants.GET_ANNOUNCEMENT_BY_ID);
@@ -143,14 +144,15 @@ public class AnnouncementDao {
                 String categoryName = resultSet.getString("category_name");
                 Category category = new Category(categoryId, categoryName);
                 announcement.setCategory(category);
-                return announcement;
+
+                return Optional.of(announcement);
 
 
             }
         } catch (SQLException e) {
-            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
-        return null;
+        return Optional.empty();
 
     }
 
