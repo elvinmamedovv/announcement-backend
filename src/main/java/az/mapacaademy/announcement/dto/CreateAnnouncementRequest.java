@@ -1,14 +1,17 @@
 package az.mapacaademy.announcement.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class CreateAnnouncementRequest {
 
+    @NotNull(message = "Name can not be null")
     private String announcementName;
     private String announcementDescription;
-    private Long announcementNumber;
+    @NotNull(message = "Price can not be null")
     private Double price;
+    @NotNull(message = "Phone number can not be null")
     private String phoneNumber;
     private String sellerFullName;
     private Boolean delivery;
