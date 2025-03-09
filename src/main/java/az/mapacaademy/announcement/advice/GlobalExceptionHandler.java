@@ -1,6 +1,7 @@
 package az.mapacaademy.announcement.advice;
 
 
+import az.mapacaademy.announcement.dto.BaseResponse;
 import az.mapacaademy.announcement.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -18,23 +19,22 @@ import java.util.stream.Collectors;
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    private final View error;
-
-    public GlobalExceptionHandler(View error) {
-        this.error = error;
-    }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handleException(RuntimeException e){
+    public  ResponseEntity<Object> handleException(RuntimeException e){
         log.error(e.getMessage());
+        BaseResponse<Void> baseResponse = new BaseResponse<>();
+        baseResponse.setMessage(e.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(e.getMessage());
+                .body(baseResponse);
     }
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<String> handleNotFoundException(NotFoundException e){
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException e){
         log.error(e.getMessage());
+        BaseResponse<Void> baseResponse = new BaseResponse<>();
+        baseResponse.setMessage(e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(e.getMessage());
+                .body(baseResponse);
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
@@ -44,8 +44,10 @@ public class GlobalExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .toList();
         String message=String.join(", ", errors);
+        BaseResponse<Void> baseResponse = new BaseResponse<>();
+        baseResponse.setMessage(message);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(message);
+                .body(baseResponse);
     }
 
 

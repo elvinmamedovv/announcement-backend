@@ -1,6 +1,7 @@
 package az.mapacaademy.announcement.controller;
 
 
+import az.mapacaademy.announcement.dto.BaseResponse;
 import az.mapacaademy.announcement.dto.CategoryDto;
 import az.mapacaademy.announcement.service.CategoryService;
 import lombok.Data;
@@ -20,10 +21,13 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public List<CategoryDto> getAllCategories(){
+    public BaseResponse<List<CategoryDto>> getAllCategories(){
         log.info("Get all categories");
+        List<CategoryDto> categoryDtos = categoryService.getAllCategories();
+        BaseResponse<List<CategoryDto>> baseResponse = new BaseResponse<>();
+        baseResponse.setData(categoryDtos);
 
-        return  categoryService.getAllCategories();
+        return baseResponse;
     }
 
 
