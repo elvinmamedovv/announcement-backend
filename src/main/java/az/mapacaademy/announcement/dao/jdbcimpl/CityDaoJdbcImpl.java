@@ -1,7 +1,8 @@
-package az.mapacaademy.announcement.dao;
+package az.mapacaademy.announcement.dao.jdbcimpl;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.constant.QueryConstants;
+import az.mapacaademy.announcement.dao.CityDao;
 import az.mapacaademy.announcement.entity.City;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -10,8 +11,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
-@Repository
-public class CityDao {
+@Repository("cityDaoJdbcImpl")
+public class  CityDaoJdbcImpl implements CityDao {
+    @Override
     public List<City> findAll(){
         log.info("Getting cities from DB");
 

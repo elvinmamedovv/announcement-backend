@@ -1,7 +1,8 @@
-package az.mapacaademy.announcement.dao;
+package az.mapacaademy.announcement.dao.jdbcimpl;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.constant.QueryConstants;
+import az.mapacaademy.announcement.dao.CategoryDao;
 import az.mapacaademy.announcement.entity.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -14,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@Repository
+@Repository("categoryDaoJdbcImpl")
 
-public class CategoryDao {
+public class CategoryDaoJdbcImpl implements CategoryDao {
+    @Override
     public List<Category> findAll(){
         log.info("Getting categories from DB ");
         List<Category> categories = new ArrayList<>();

@@ -1,7 +1,8 @@
-package az.mapacaademy.announcement.dao;
+package az.mapacaademy.announcement.dao.jdbcimpl;
 
 import az.mapacaademy.announcement.config.DatabaseConfig;
 import az.mapacaademy.announcement.constant.QueryConstants;
+import az.mapacaademy.announcement.dao.AnnouncementDao;
 import az.mapacaademy.announcement.entity.Announcement;
 import az.mapacaademy.announcement.entity.Category;
 import az.mapacaademy.announcement.entity.City;
@@ -15,9 +16,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@Repository
-public class AnnouncementDao {
+@Repository("announcementDaoJdbcImpl")
+public class AnnouncementDaoJdbcImpl implements AnnouncementDao {
 
+    @Override
     public List<Announcement> findAll() {
         List<Announcement> announcements = new ArrayList<>();
         try (Connection connection = DatabaseConfig.getConnection()) {
@@ -63,7 +65,7 @@ public class AnnouncementDao {
 
         return announcements;
     }
-
+    @Override
     public void create(Announcement announcement) {
         try (Connection connection = DatabaseConfig.getConnection()) {
             log.info("Create announcement query: {}", QueryConstants.CREATE_ANNOUNCEMENT_QUERY);
@@ -82,7 +84,7 @@ public class AnnouncementDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public void update(Announcement announcement) {
         try (Connection connection = DatabaseConfig.getConnection()) {
             log.info("Update announcement query: {}", QueryConstants.UPDATE_ANNOUNCEMENT_QUERY);
@@ -99,7 +101,7 @@ public class AnnouncementDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public void delete(Long announcementId) {
         try (Connection connection = DatabaseConfig.getConnection()) {
             log.info("Delete announcement query: {}", QueryConstants.DELETE_ANNOUNCEMENT_QUERY);
@@ -110,7 +112,7 @@ public class AnnouncementDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public Optional<Announcement> findById(Long announcementId) {
         try (Connection connection = DatabaseConfig.getConnection()) {
             log.info("Get announcement by id query: {}", QueryConstants.GET_ANNOUNCEMENT_BY_ID);
