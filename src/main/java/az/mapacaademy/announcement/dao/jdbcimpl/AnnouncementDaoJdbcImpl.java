@@ -34,8 +34,8 @@ public class AnnouncementDaoJdbcImpl implements AnnouncementDao {
                 announcement.setAnnouncementDescription(resultSet.getString("description"));
                 announcement.setAnnouncementNumber(resultSet.getLong("announcement_number"));
                 announcement.setPrice(resultSet.getDouble("price"));
-                announcement.setPhoneNumber(resultSet.getString("phone_number"));
-                announcement.setSellerFullName(resultSet.getString("seller_full_name"));
+//                announcement.setPhoneNumber(resultSet.getString("phone_number"));
+//                announcement.setSellerFullName(resultSet.getString("seller_full_name"));
                 announcement.setDelivery(resultSet.getBoolean("delivery"));
                 Timestamp createdDate = resultSet.getTimestamp("created_date");
                 LocalDateTime createdDateTime = createdDate.toLocalDateTime();
@@ -74,8 +74,8 @@ public class AnnouncementDaoJdbcImpl implements AnnouncementDao {
             preparedStatement.setString(2, announcement.getAnnouncementDescription());
             preparedStatement.setLong(3, announcement.getAnnouncementNumber());
             preparedStatement.setDouble(4, announcement.getPrice());
-            preparedStatement.setString(5, announcement.getPhoneNumber());
-            preparedStatement.setString(6, announcement.getSellerFullName());
+//            preparedStatement.setString(5, announcement.getPhoneNumber());
+//            preparedStatement.setString(6, announcement.getSellerFullName());
             preparedStatement.setBoolean(7, announcement.getDelivery());
             preparedStatement.setLong(8, announcement.getCity().getCityId());
             preparedStatement.setLong(9, announcement.getCategory().getCategoryId());
@@ -92,7 +92,7 @@ public class AnnouncementDaoJdbcImpl implements AnnouncementDao {
             preparedStatement.setString(1, announcement.getAnnouncementName());
             preparedStatement.setString(2, announcement.getAnnouncementDescription());
             preparedStatement.setDouble(3, announcement.getPrice());
-            preparedStatement.setString(4, announcement.getSellerFullName());
+//            preparedStatement.setString(4, announcement.getSellerFullName());
             preparedStatement.setBoolean(5, announcement.getDelivery());
             preparedStatement.setLong(6, announcement.getAnnouncementId());
             preparedStatement.execute();
@@ -126,8 +126,8 @@ public class AnnouncementDaoJdbcImpl implements AnnouncementDao {
                 announcement.setAnnouncementDescription(resultSet.getString("description"));
                 announcement.setAnnouncementNumber(resultSet.getLong("announcement_number"));
                 announcement.setPrice(resultSet.getDouble("price"));
-                announcement.setPhoneNumber(resultSet.getString("phone_number"));
-                announcement.setSellerFullName(resultSet.getString("seller_full_name"));
+//                announcement.setPhoneNumber(resultSet.getString("phone_number"));
+//                announcement.setSellerFullName(resultSet.getString("seller_full_name"));
                 announcement.setDelivery(resultSet.getBoolean("delivery"));
                 Timestamp createdDate = resultSet.getTimestamp("created_date");
                 LocalDateTime createdDateTime = createdDate.toLocalDateTime();
