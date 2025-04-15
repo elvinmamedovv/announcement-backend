@@ -1,36 +1,24 @@
-package az.mapacaademy.announcement.entity;
+package az.mapacaademy.announcement.dto;
 
 import az.mapacaademy.announcement.enums.Role;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name="USERS")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="USER_ID")
-    private Long userId;
+public class UserResponse {
     private String name;
     private String surname;
     private LocalDate birthDate;
     private String phoneNumber;
     private String email;
-    private String userName;
-    private String password;
+    private String username;
     @Enumerated(EnumType.STRING)
     private Role role;
-    private boolean locked;
-    private boolean enabled;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-
-
-
 
 }
